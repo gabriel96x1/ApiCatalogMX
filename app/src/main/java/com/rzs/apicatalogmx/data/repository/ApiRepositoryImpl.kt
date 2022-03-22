@@ -1,12 +1,17 @@
 package com.rzs.apicatalogmx.data.repository
 
+import com.rzs.apicatalogmx.data.data_source.GetApiDataService
+import com.rzs.apicatalogmx.domain.model.PageModel
 import com.rzs.apicatalogmx.domain.repository.ApiRepository
-import kotlinx.coroutines.flow.Flow
+import retrofit2.Response
+import javax.inject.Inject
 
-class ApiRepositoryImpl : ApiRepository{
 
-    override suspend fun getApiCatalog(): Flow<List<String>> {
-        TODO("Not yet implemented")
+class ApiRepositoryImpl @Inject constructor(
+    private val service: GetApiDataService
+): ApiRepository  {
 
+    override suspend fun getApiCatalog(): Response<PageModel> {
+        return service.getAllApis()
     }
 }
